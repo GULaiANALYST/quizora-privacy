@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Privacy Policy – Quizora</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0d0f1a;
+      --surface: #13162a;
+      --card: #181c30;
+      --accent: #7c6ef0;
+      --accent2: #a78bfa;
+      --accent-glow: rgba(124,110,240,0.18);
+      --text: #e8e8f0;
+      --muted: #8888aa;
+      --border: rgba(124,110,240,0.15);
+      --highlight: #fbbf24;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Sora', sans-serif;
+      font-size: 15px;
+      line-height: 1.8;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Background decoration */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -200px; left: 50%;
+      transform: translateX(-50%);
+      width: 900px; height: 600px;
+      background: radial-gradient(ellipse at center, rgba(124,110,240,0.13) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Header ── */
+    header {
+      position: relative;
+      padding: 64px 24px 48px;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .logo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 8px 20px 8px 10px;
+      margin-bottom: 32px;
+      font-size: 13px;
+      color: var(--accent2);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .logo-badge .dot {
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.2rem, 6vw, 3.5rem);
+      font-weight: 400;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    h1 span {
+      color: var(--accent2);
+      font-style: italic;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 300;
+      letter-spacing: 0.02em;
+    }
+
+    .updated-tag {
+      display: inline-block;
+      margin-top: 16px;
+      background: rgba(251,191,36,0.1);
+      color: var(--highlight);
+      border: 1px solid rgba(251,191,36,0.25);
+      border-radius: 6px;
+      padding: 4px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Divider */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 48px 0;
+    }
+
+    /* ── Sections ── */
+    .section {
+      margin-bottom: 40px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 36px;
+      position: relative;
+      transition: border-color 0.3s;
+    }
+
+    .section:hover {
+      border-color: rgba(124,110,240,0.35);
+    }
+
+    .section-number {
+      position: absolute;
+      top: -14px; left: 28px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 3px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 16px;
+      padding-top: 6px;
+    }
+
+    h3 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent2);
+      margin: 20px 0 8px;
+    }
+
+    p { color: #c4c4d8; margin-bottom: 12px; }
+
+    /* Lists */
+    ul {
+      list-style: none;
+      margin: 10px 0 14px;
+      padding: 0;
+    }
+
+    ul li {
+      padding: 5px 0 5px 22px;
+      position: relative;
+      color: #c4c4d8;
+    }
+
+    ul li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 50%;
+      transform: translateY(-50%);
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      opacity: 0.7;
+    }
+
+    strong { color: var(--text); font-weight: 600; }
+
+    /* ── No-collect badge ── */
+    .no-collect {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .no-collect span {
+      background: rgba(239,68,68,0.08);
+      border: 1px solid rgba(239,68,68,0.2);
+      color: #f87171;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 6px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Highlight box ── */
+    .callout {
+      background: var(--accent-glow);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 14px 18px;
+      margin: 16px 0;
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    /* ── Legal tags ── */
+    .legal-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .legal-tags span {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--accent2);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 14px;
+      border-radius: 6px;
+    }
+
+    /* ── Contact box ── */
+    .contact-box {
+      background: linear-gradient(135deg, var(--accent-glow), transparent);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px 26px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .contact-icon {
+      width: 42px; height: 42px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .contact-box p { margin: 0; font-size: 14px; }
+    .contact-box a {
+      color: var(--accent2);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px dashed var(--accent2);
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      position: relative;
+      z-index: 1;
+    }
+
+    footer::before {
+      content: '';
+      display: block;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin-bottom: 24px;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .section { padding: 28px 22px; }
+      h2 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo-badge">
+      <div class="dot"></div>
+      Quizora · Privacy Policy
+    </div>
+    <h1>Your Privacy,<br><span>Our Responsibility</span></h1>
+    <p class="subtitle">How Quizora collects, uses, and protects your information</p>
+    <div class="updated-tag">Last Updated: 26 April 2026</div>
+  </header>
+
+  <div class="container">
+
+    <div class="section">
+      <p>This Privacy Policy describes how <strong>Quizora ("we", "our", "us")</strong> collects, uses, and protects your information when you use the Quizora mobile application (the "App"). We are committed to protecting your privacy and handling your data responsibly.</p>
+    </div>
+
+    <!-- Section 1 -->
+    <div class="section">
+      <div class="section-number">01</div>
+      <h2>Information We Collect</h2>
+      <p>Quizora is a simple quiz application. We collect only minimal information necessary to operate and improve the App.</p>
+
+      <h3>Device & Usage Data</h3>
+      <p>We may collect basic technical data such as:</p>
+      <ul>
+        <li>Device type and operating system</li>
+        <li>App usage statistics (quiz attempts, scores, feature usage)</li>
+        <li>Crash logs and performance data</li>
+      </ul>
+
+      <h3>Optional User Data</h3>
+      <p>If the App includes login or leaderboard features, we may collect:</p>
+      <ul>
+        <li>Username or display name</li>
+        <li>Email address (if login is enabled)</li>
+      </ul>
+
+      <h3>We Do NOT Collect</h3>
+      <div class="no-collect">
+        <span>Financial Information</span>
+        <span>Personal Documents</span>
+        <span>Location Tracking</span>
+        <span>Camera / Microphone</span>
+      </div>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="section">
+      <div class="section-number">02</div>
+      <h2>How We Use Your Information</h2>
+      <ul>
+        <li>Provide core quiz functionality</li>
+        <li>Improve app performance and user experience</li>
+        <li>Track scores, progress, or leaderboards (if enabled)</li>
+        <li>Fix bugs and ensure stability</li>
+        <li>Prevent misuse or abuse of the App</li>
+      </ul>
+      <div class="callout">
+        We do <strong>not sell or trade your personal data</strong> to any third parties — ever.
+      </div>
+    </div>
+
+    <!-- Section 3 -->
+    <div class="section">
+      <div class="section-number">03</div>
+      <h2>Legal Basis for Processing</h2>
+      <p>We process your data under the following legal bases:</p>
+      <div class="legal-tags">
+        <span>Consent</span>
+        <span>Legitimate Interests</span>
+        <span>Contract</span>
+      </div>
+      <ul style="margin-top:16px">
+        <li><strong>Consent</strong> – when you agree to optional features</li>
+        <li><strong>Legitimate Interests</strong> – improving and maintaining the App</li>
+        <li><strong>Contract</strong> – delivering core quiz services</li>
+      </ul>
+    </div>
+
+    <!-- Section 4 -->
+    <div class="section">
+      <div class="section-number">04</div>
+      <h2>Sharing Your Information</h2>
+      <p>We may share limited data with trusted service providers only for operational purposes, such as:</p>
+      <ul>
+        <li>Firebase / backend hosting services</li>
+        <li>Analytics tools (e.g., Google Analytics for Firebase)</li>
+        <li>Crash reporting services</li>
+      </ul>
+      <p>All third parties are required to protect your data and use it only for the services they provide.</p>
+    </div>
+
+    <!-- Section 5 -->
+    <div class="section">
+      <div class="section-number">05</div>
+      <h2>Data Retention</h2>
+      <ul>
+        <li>Usage and analytics data: up to <strong>12–24 months</strong></li>
+        <li>User accounts (if any): until deleted by the user</li>
+        <li>Crash logs: up to <strong>90 days</strong> or as required for debugging</li>
+      </ul>
+    </div>
+
+    <!-- Section 6 -->
+    <div class="section">
+      <div class="section-number">06</div>
+      <h2>Your Rights</h2>
+      <p>Depending on your location, you may have the right to:</p>
+      <ul>
+        <li>Access your data</li>
+        <li>Request correction of your data</li>
+        <li>Request deletion of your data</li>
+        <li>Withdraw consent at any time</li>
+        <li>Request a copy of your data</li>
+      </ul>
+      <p>To exercise these rights, contact us:</p>
+      <div class="contact-box">
+        <div class="contact-icon">✉️</div>
+        <p>Send your request to <a href="mailto:your@email.com">your@email.com</a> and we'll respond promptly.</p>
+      </div>
+    </div>
+
+    <!-- Section 7 -->
+    <div class="section">
+      <div class="section-number">07</div>
+      <h2>Children's Privacy</h2>
+      <p>Quizora is safe for general audiences. We do <strong>not</strong> knowingly collect personal data from children under <strong>13</strong>. If we discover such data has been collected, it will be deleted immediately.</p>
+      <p>If you are a parent or guardian and believe your child has provided us with personal information, please contact us right away.</p>
+    </div>
+
+    <!-- Section 8 -->
+    <div class="section">
+      <div class="section-number">08</div>
+      <h2>Security</h2>
+      <p>We use appropriate technical measures to protect your data, including:</p>
+      <ul>
+        <li>Secure servers and encrypted connections</li>
+        <li>Restricted access controls</li>
+        <li>Regular security reviews</li>
+      </ul>
+      <div class="callout">
+        However, no system is 100% secure. We cannot guarantee absolute security, but we continuously work to minimize risks.
+      </div>
+    </div>
+
+    <!-- Section 9 -->
+    <div class="section">
+      <div class="section-number">09</div>
+      <h2>Third-Party Services</h2>
+      <p>The App may use third-party services that collect limited data for analytics, crash reporting, and cloud storage. These services operate under their own privacy policies. We encourage you to review them:</p>
+      <ul>
+        <li><a href="https://policies.google.com/privacy" style="color:var(--accent2)">Google / Firebase Privacy Policy</a></li>
+      </ul>
+    </div>
+
+    <!-- Section 10 -->
+    <div class="section">
+      <div class="section-number">10</div>
+      <h2>Changes to This Policy</h2>
+      <p>We may update this Privacy Policy from time to time. Any changes will be posted within the App with an updated <strong>"Last Updated"</strong> date at the top of this page.</p>
+      <p>Continued use of the App after changes are posted constitutes your acceptance of the revised policy.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section" style="text-align:center; padding: 36px;">
+      <p style="color:var(--muted); font-size:13px;">Questions about this policy?</p>
+      <h2 style="margin-bottom:12px">Get in Touch</h2>
+      <div class="contact-box" style="justify-content:center">
+        <div class="contact-icon">📬</div>
+        <p>Email us at <a href="mailto:your@email.com">your@email.com</a></p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>© 2026 Quizora. All rights reserved.</p>
+    <p style="margin-top:6px">This policy is effective as of 26 April 2026</p>
+  </footer>
+
+</body>
+</html>
