@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Delete Account – Quizora</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0d0f1a;
+      --surface: #13162a;
+      --card: #181c30;
+      --accent: #7c6ef0;
+      --accent2: #a78bfa;
+      --accent-glow: rgba(124,110,240,0.18);
+      --text: #e8e8f0;
+      --muted: #8888aa;
+      --border: rgba(124,110,240,0.15);
+      --highlight: #fbbf24;
+      --danger: #ef4444;
+      --danger-glow: rgba(239,68,68,0.12);
+      --danger-border: rgba(239,68,68,0.25);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Sora', sans-serif;
+      font-size: 15px;
+      line-height: 1.8;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: -200px; left: 50%;
+      transform: translateX(-50%);
+      width: 900px; height: 600px;
+      background: radial-gradient(ellipse at center, rgba(239,68,68,0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Header ── */
+    header {
+      position: relative;
+      padding: 64px 24px 48px;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .logo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface);
+      border: 1px solid var(--danger-border);
+      border-radius: 50px;
+      padding: 8px 20px 8px 10px;
+      margin-bottom: 32px;
+      font-size: 13px;
+      color: #f87171;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .logo-badge .dot {
+      width: 8px; height: 8px;
+      background: var(--danger);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      font-weight: 400;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    h1 span { color: #f87171; font-style: italic; }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 300;
+    }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── Warning box ── */
+    .warning-box {
+      background: var(--danger-glow);
+      border: 1px solid var(--danger-border);
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin-bottom: 32px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .warning-icon {
+      font-size: 24px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .warning-box p { color: #fca5a5; margin: 0; font-size: 14px; }
+    .warning-box strong { color: #f87171; }
+
+    /* ── Cards ── */
+    .section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 36px;
+      margin-bottom: 24px;
+      position: relative;
+      transition: border-color 0.3s;
+    }
+
+    .section:hover { border-color: rgba(124,110,240,0.35); }
+
+    .section-number {
+      position: absolute;
+      top: -14px; left: 28px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 3px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 16px;
+      padding-top: 6px;
+    }
+
+    p { color: #c4c4d8; margin-bottom: 10px; }
+
+    /* ── Steps ── */
+    .steps { list-style: none; margin: 16px 0 0; padding: 0; }
+
+    .steps li {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .steps li:last-child { border-bottom: none; }
+
+    .step-num {
+      width: 30px; height: 30px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .step-text { color: #c4c4d8; font-size: 14px; line-height: 1.7; }
+    .step-text strong { color: var(--text); }
+
+    /* ── Email button ── */
+    .email-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 13px 28px;
+      border-radius: 10px;
+      transition: background 0.2s, transform 0.2s;
+      letter-spacing: 0.02em;
+    }
+
+    .email-btn:hover {
+      background: var(--accent2);
+      transform: translateY(-2px);
+    }
+
+    /* ── Data table ── */
+    .data-table { width: 100%; margin-top: 16px; border-collapse: collapse; }
+
+    .data-table th {
+      text-align: left;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .data-table td {
+      padding: 12px 12px;
+      font-size: 13px;
+      color: #c4c4d8;
+      border-bottom: 1px solid rgba(124,110,240,0.07);
+      vertical-align: top;
+    }
+
+    .data-table tr:last-child td { border-bottom: none; }
+
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 5px;
+    }
+
+    .badge-del {
+      background: var(--danger-glow);
+      color: #f87171;
+      border: 1px solid var(--danger-border);
+    }
+
+    .badge-keep {
+      background: rgba(251,191,36,0.1);
+      color: var(--highlight);
+      border: 1px solid rgba(251,191,36,0.25);
+    }
+
+    /* ── Timeline ── */
+    .timeline { margin-top: 16px; }
+
+    .timeline-item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .timeline-line {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    .tl-dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+
+    .tl-bar {
+      width: 2px;
+      flex: 1;
+      background: var(--border);
+      margin-top: 4px;
+    }
+
+    .timeline-item:last-child .tl-bar { display: none; }
+
+    .tl-content { padding-bottom: 8px; }
+    .tl-title { font-weight: 600; font-size: 13px; color: var(--text); }
+    .tl-desc { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+    /* ── Back link ── */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent2);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 32px;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+
+    .back-link:hover { opacity: 1; }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      position: relative;
+      z-index: 1;
+    }
+
+    footer::before {
+      content: '';
+      display: block;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 600px) {
+      .section { padding: 28px 20px; }
+      h2 { font-size: 1.15rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo-badge">
+      <div class="dot"></div>
+      Quizora · Account Deletion
+    </div>
+    <h1>Delete Your<br><span>Account & Data</span></h1>
+    <p class="subtitle">We respect your right to remove your data at any time</p>
+  </header>
+
+  <div class="container">
+
+    <a href="index.html" class="back-link">← Back to Privacy Policy</a>
+
+    <div class="warning-box">
+      <div class="warning-icon">⚠️</div>
+      <p><strong>This action is permanent.</strong> Once your account is deleted, your data cannot be recovered. Please read through this page carefully before submitting a deletion request.</p>
+    </div>
+
+    <!-- How to request -->
+    <div class="section">
+      <div class="section-number">How to Request</div>
+      <h2>Steps to Delete Your Account</h2>
+      <p>To request deletion of your Quizora account and associated data, follow these steps:</p>
+
+      <ol class="steps">
+        <li>
+          <div class="step-num">1</div>
+          <div class="step-text">Send an email to <strong>gulrehman1324@gmail.com</strong> with the subject line: <strong>"Account Deletion Request"</strong></div>
+        </li>
+        <li>
+          <div class="step-num">2</div>
+          <div class="step-text">Include the <strong>email address</strong> associated with your Quizora account so we can locate your data</div>
+        </li>
+        <li>
+          <div class="step-num">3</div>
+          <div class="step-text">We will verify your identity and send a <strong>confirmation email</strong> within 2 business days</div>
+        </li>
+        <li>
+          <div class="step-num">4</div>
+          <div class="step-text">Your account and data will be <strong>permanently deleted within 30 days</strong> of your confirmed request</div>
+        </li>
+      </ol>
+
+      <a href="mailto:gulrehman1324@gmail.com?subject=Account%20Deletion%20Request&body=Hello%2C%0A%0AI%20would%20like%20to%20request%20the%20deletion%20of%20my%20Quizora%20account.%0A%0AEmail%20associated%20with%20my%20account%3A%20%5Byour%40email.com%5D%0A%0AThank%20you." class="email-btn">
+        ✉️ Send Deletion Request
+      </a>
+    </div>
+
+    <!-- What gets deleted -->
+    <div class="section">
+      <div class="section-number">What Happens</div>
+      <h2>Data Deleted vs. Retained</h2>
+      <p>Here is a breakdown of what happens to your data upon a confirmed deletion request:</p>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Data Type</th>
+            <th>Action</th>
+            <th>Timeframe</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Account info (email, username)</td>
+            <td><span class="badge badge-del">Deleted</span></td>
+            <td>Within 30 days</td>
+          </tr>
+          <tr>
+            <td>Quiz scores & progress</td>
+            <td><span class="badge badge-del">Deleted</span></td>
+            <td>Within 30 days</td>
+          </tr>
+          <tr>
+            <td>Leaderboard entries</td>
+            <td><span class="badge badge-del">Deleted</span></td>
+            <td>Within 30 days</td>
+          </tr>
+          <tr>
+            <td>Crash logs & diagnostics</td>
+            <td><span class="badge badge-keep">Auto-expires</span></td>
+            <td>Within 90 days</td>
+          </tr>
+          <tr>
+            <td>Anonymized analytics data</td>
+            <td><span class="badge badge-keep">Retained (anonymized)</span></td>
+            <td>No personal link</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Timeline -->
+    <div class="section">
+      <div class="section-number">Timeline</div>
+      <h2>What to Expect</h2>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-line"><div class="tl-dot"></div><div class="tl-bar"></div></div>
+          <div class="tl-content">
+            <div class="tl-title">Day 0 — You send the request</div>
+            <div class="tl-desc">Email us at gulrehman1324@gmail.com with your account email</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-line"><div class="tl-dot"></div><div class="tl-bar"></div></div>
+          <div class="tl-content">
+            <div class="tl-title">Within 2 business days — Confirmation</div>
+            <div class="tl-desc">We verify your identity and send a confirmation email</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-line"><div class="tl-dot"></div><div class="tl-bar"></div></div>
+          <div class="tl-content">
+            <div class="tl-title">Within 30 days — Account deleted</div>
+            <div class="tl-desc">Your account, scores, and personal data are permanently removed</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-line"><div class="tl-dot"></div></div>
+          <div class="tl-content">
+            <div class="tl-title">Within 90 days — Crash logs expired</div>
+            <div class="tl-desc">Any remaining diagnostic data is automatically purged</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="section" style="text-align:center;">
+      <h2>Need Help?</h2>
+      <p>If you have any questions about the deletion process, we're here to help.</p>
+      <a href="mailto:gulrehman1324@gmail.com" class="email-btn" style="margin-top:12px">✉️ Contact Support</a>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>© 2026 Quizora. All rights reserved.</p>
+    <p style="margin-top:6px">This page is part of Quizora's commitment to user privacy.</p>
+  </footer>
+
+</body>
+</html>
